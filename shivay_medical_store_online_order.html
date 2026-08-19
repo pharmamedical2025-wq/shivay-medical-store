@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shivay Medical Store | Online Order</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f7f8fa;color:#202124}
+  .hero{background:#fff;padding:28px 18px 22px;text-align:center;border-bottom:1px solid #e5e7eb}
+  .logo{width:72px;height:72px;border-radius:18px;background:#fff;border:2px solid #222;display:inline-flex;align-items:center;justify-content:center;font-size:34px;margin-bottom:10px}
+  h1{margin:4px 0;font-size:28px}.tag{margin:7px 0;color:#555}
+  .wrap{max-width:720px;margin:0 auto;padding:18px}
+  .card{background:#fff;border:1px solid #e1e4e8;border-radius:16px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+  h2{font-size:20px;margin:0 0 14px}
+  label{display:block;font-weight:700;margin:12px 0 6px}
+  input,textarea,select{width:100%;padding:13px;border:1px solid #cfd4da;border-radius:10px;font-size:16px;background:#fff}
+  textarea{min-height:100px;resize:vertical}
+  .btn{display:block;width:100%;padding:15px;border:0;border-radius:11px;font-size:17px;font-weight:700;cursor:pointer;margin-top:14px}
+  .primary{background:#111;color:#fff}.whatsapp{background:#25D366;color:#fff}
+  .note{font-size:13px;color:#666;line-height:1.5}
+  .contact{text-align:center}.contact strong{font-size:18px}
+  .footer{text-align:center;color:#777;font-size:12px;padding:8px 0 25px}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="logo">⚕</div>
+  <h1>Shivay Medical Store</h1>
+  <p class="tag">Order medicines online • Local delivery</p>
+</header>
+
+<main class="wrap">
+  <section class="card">
+    <h2>🛒 Place Your Order</h2>
+    <label for="name">Customer name *</label>
+    <input id="name" placeholder="Enter your name">
+
+    <label for="phone">Mobile number *</label>
+    <input id="phone" type="tel" placeholder="Enter mobile number">
+
+    <label for="medicines">Medicine / product list *</label>
+    <textarea id="medicines" placeholder="Example: Paracetamol 500 mg – 10 tablets&#10;Or write: I am uploading a prescription"></textarea>
+
+    <label for="qty">Quantity / notes</label>
+    <textarea id="qty" placeholder="Any quantity or product details"></textarea>
+
+    <label for="address">Delivery address *</label>
+    <textarea id="address" placeholder="House no., street, area, Delhi"></textarea>
+
+    <label for="pincode">Pincode *</label>
+    <input id="pincode" inputmode="numeric" placeholder="Enter pincode">
+
+    <label for="prescription">Prescription</label>
+    <input id="prescription" type="file" accept="image/*,.pdf">
+    <p class="note">For prescription medicines, please provide a valid prescription where required. This page does not dispense medicines automatically; the pharmacy will verify the order before confirmation.</p>
+
+    <button class="btn whatsapp" onclick="sendWhatsApp()">Send Order on WhatsApp</button>
+    <button class="btn primary" onclick="showInfo()">How it works</button>
+    <p id="info" class="note" style="display:none">Submit your details, then send the order to the store on WhatsApp. Shivay Medical Store can confirm availability, price, prescription requirements and delivery details before accepting the order.</p>
+  </section>
+
+  <section class="card contact">
+    <h2>📞 Contact</h2>
+    <p><strong>Shivay Medical Store</strong></p>
+    <p>J-1051, Jahangir Puri, Delhi – 110033</p>
+    <p>WhatsApp/Call: <strong>9220830645</strong></p>
+    <p class="note">Delivery availability and charges may depend on your location and order.</p>
+  </section>
+
+  <div class="footer">© Shivay Medical Store • Online ordering page</div>
+</main>
+
+<script>
+function sendWhatsApp(){
+  const name=document.getElementById('name').value.trim();
+  const phone=document.getElementById('phone').value.trim();
+  const medicines=document.getElementById('medicines').value.trim();
+  const qty=document.getElementById('qty').value.trim();
+  const address=document.getElementById('address').value.trim();
+  const pin=document.getElementById('pincode').value.trim();
+
+  if(!name || !phone || !medicines || !address || !pin){
+    alert("Please fill all fields marked *.");
+    return;
+  }
+
+  const text =
+`Hello Shivay Medical Store,
+
+I want to place an online order.
+
+Name: ${name}
+Mobile: ${phone}
+Medicines/Products:
+${medicines}
+
+Quantity/Notes:
+${qty || "N/A"}
+
+Delivery Address:
+${address}
+
+Pincode: ${pin}
+
+I understand that prescription medicines may require prescription verification. Please confirm availability, price and delivery details.`;
+
+  const wa="919220830645";
+  window.open("https://wa.me/"+wa+"?text="+encodeURIComponent(text),"_blank");
+}
+function showInfo(){
+  const x=document.getElementById('info');
+  x.style.display=x.style.display==="none"?"block":"none";
+}
+</script>
+</body>
+</html>
