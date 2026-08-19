@@ -1,1 +1,0 @@
-# shivay-medical-store
